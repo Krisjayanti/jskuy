@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asset/bootstrap/css/bootstrap.min.css">
+    <!-- downloads -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <title>2gas_3</title>
+    <link rel="stylesheet" href="asset/style.css">
+    <link rel="stylesheet" href="asset/fontawesome-free-5.15.4-web/css/all.css">
+</head>
+<!-- program dijalankan dalam keadaan online -->
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#0099ff" fill-opacity="0.6"
+            d="M0,256L8.3,218.7C16.6,181,33,107,50,64C66.2,21,83,11,99,5.3C115.9,0,132,0,149,10.7C165.5,21,182,43,199,90.7C215.2,139,232,213,248,234.7C264.8,256,281,224,298,213.3C314.5,203,331,213,348,208C364.1,203,381,181,397,160C413.8,139,430,117,447,128C463.4,139,480,181,497,213.3C513.1,245,530,267,546,234.7C562.8,203,579,117,596,90.7C612.4,64,629,96,646,96C662.1,96,679,64,695,48C711.7,32,728,32,745,37.3C761.4,43,778,53,794,90.7C811,128,828,192,844,192C860.7,192,877,128,894,122.7C910.3,117,927,171,943,165.3C960,160,977,96,993,80C1009.7,64,1026,96,1043,122.7C1059.3,149,1076,171,1092,186.7C1109,203,1126,213,1142,229.3C1158.6,245,1175,267,1192,266.7C1208.3,267,1225,245,1241,213.3C1257.9,181,1274,139,1291,122.7C1307.6,107,1324,117,1341,144C1357.2,171,1374,213,1390,213.3C1406.9,213,1423,171,1432,149.3L1440,128L1440,0L1431.7,0C1423.4,0,1407,0,1390,0C1373.8,0,1357,0,1341,0C1324.1,0,1308,0,1291,0C1274.5,0,1258,0,1241,0C1224.8,0,1208,0,1192,0C1175.2,0,1159,0,1142,0C1125.5,0,1109,0,1092,0C1075.9,0,1059,0,1043,0C1026.2,0,1010,0,993,0C976.6,0,960,0,943,0C926.9,0,910,0,894,0C877.2,0,861,0,844,0C827.6,0,811,0,794,0C777.9,0,761,0,745,0C728.3,0,712,0,695,0C678.6,0,662,0,646,0C629,0,612,0,596,0C579.3,0,563,0,546,0C529.7,0,513,0,497,0C480,0,463,0,447,0C430.3,0,414,0,397,0C380.7,0,364,0,348,0C331,0,314,0,298,0C281.4,0,265,0,248,0C231.7,0,215,0,199,0C182.1,0,166,0,149,0C132.4,0,116,0,99,0C82.8,0,66,0,50,0C33.1,0,17,0,8,0L0,0Z">
+        </path>
+    </svg>
+
+    <div class="container">
+        <div class="kop">
+            <div class="h4 mb-4" id="date-part"></div> &nbsp
+            <h4>|</h4>&nbsp
+            <div class="h4 mb-4" id="time-part"></div>
+        </div>
+        <form class="text-center border border-light p-5">
+
+            <p class="h2 mb-4">Konversi Suhu</p>
+            <hr>
+            <br>
+            <div class="h4 mb-12">
+                <select name="form-select" id="from" onchange="select()">
+                    <option value="cel">Celcius</option>
+                    <option value="far">Farenheit</option>
+                    <option value="rea">Reamur</option>
+                </select>
+                <i class="fas fa-arrow-right"></i>
+                <select name="form-select" id="to" onchange="select()">
+                    <option value="cel">Celcius</option>
+                    <option value="far">Farenheit</option>
+                    <option value="rea">Reamur</option>
+                </select>
+            </div>
+            <br>
+            <input type="number" name="kvr" id="num1" class="form-control mb-4" placeholder="Nominal suhu"
+                onkeypress="validate(event)" onkeyup="conv()" />
+            <p class="h6 mb-4">=</p>
+            <input type="number" id="result" class="form-control mb-4" placeholder="Hasil" disabled />
+        </form>
+        <br>
+        <label for="color"> Changes Color :</label>
+        <br>
+        <input class="form-control" id="color" placeholder="in English" /><br>
+        <button type="button" class="btn btn-light" onclick="change()">
+            UBAH
+        </button>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#0099ff" fill-opacity="0.6"
+            d="M0,64L8.3,64C16.6,64,33,64,50,74.7C66.2,85,83,107,99,138.7C115.9,171,132,213,149,224C165.5,235,182,213,199,170.7C215.2,128,232,64,248,80C264.8,96,281,192,298,218.7C314.5,245,331,203,348,202.7C364.1,203,381,245,397,250.7C413.8,256,430,224,447,176C463.4,128,480,64,497,48C513.1,32,530,64,546,69.3C562.8,75,579,53,596,37.3C612.4,21,629,11,646,48C662.1,85,679,171,695,197.3C711.7,224,728,192,745,170.7C761.4,149,778,139,794,138.7C811,139,828,149,844,144C860.7,139,877,117,894,96C910.3,75,927,53,943,80C960,107,977,181,993,224C1009.7,267,1026,277,1043,272C1059.3,267,1076,245,1092,224C1109,203,1126,181,1142,197.3C1158.6,213,1175,267,1192,245.3C1208.3,224,1225,128,1241,96C1257.9,64,1274,96,1291,96C1307.6,96,1324,64,1341,74.7C1357.2,85,1374,139,1390,138.7C1406.9,139,1423,85,1432,58.7L1440,32L1440,320L1431.7,320C1423.4,320,1407,320,1390,320C1373.8,320,1357,320,1341,320C1324.1,320,1308,320,1291,320C1274.5,320,1258,320,1241,320C1224.8,320,1208,320,1192,320C1175.2,320,1159,320,1142,320C1125.5,320,1109,320,1092,320C1075.9,320,1059,320,1043,320C1026.2,320,1010,320,993,320C976.6,320,960,320,943,320C926.9,320,910,320,894,320C877.2,320,861,320,844,320C827.6,320,811,320,794,320C777.9,320,761,320,745,320C728.3,320,712,320,695,320C678.6,320,662,320,646,320C629,320,612,320,596,320C579.3,320,563,320,546,320C529.7,320,513,320,497,320C480,320,463,320,447,320C430.3,320,414,320,397,320C380.7,320,364,320,348,320C331,320,314,320,298,320C281.4,320,265,320,248,320C231.7,320,215,320,199,320C182.1,320,166,320,149,320C132.4,320,116,320,99,320C82.8,320,66,320,50,320C33.1,320,17,320,8,320L0,320Z">
+        </path>
+    </svg>
+</body>
+
+<script src="asset/Convert.js"></script>
+<script>
+    $(document).ready(function () {
+        var interval = setInterval(function () {
+            var momentNow = moment();
+            $("#date-part").html(
+                momentNow.format("dddd").substring(0, 3).toUpperCase() +
+                " " +
+                momentNow.format("DD MMMM YYYY")
+            );
+            $("#time-part").html(momentNow.format("A hh:mm:ss"));
+        }, 100);
+    });
+
+    function validate(evt) {
+        var theEvent = evt || window.event;
+
+        // Handle paste
+        if (theEvent.type === "paste") {
+            key = event.clipboardData.getData("text/plain");
+        } else {
+            // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+
+    function select() {
+        document.getElementById("num1").value = "";
+        document.getElementById("result").value = "";
+    }
+
+    const convert = new Convert();
+
+    function conv() {
+        if (document.getElementById("from").value == "cel") {
+            const res = convert.fromCelcius(
+                document.getElementById("to").value,
+                parseInt(document.getElementById("num1").value)
+            );
+            document.getElementById("result").value = res;
+        }
+        if (document.getElementById("from").value == "rea") {
+            const res = convert.fromReamur(
+                document.getElementById("to").value,
+                parseInt(document.getElementById("num1").value)
+            );
+            document.getElementById("result").value = res;
+        }
+        if (document.getElementById("from").value == "far") {
+            const res = convert.fromFarenheit(
+                document.getElementById("to").value,
+                parseInt(document.getElementById("num1").value)
+            );
+            document.getElementById("result").value = res;
+        }
+    }
+
+    function change() {
+        document.body.style.backgroundColor =
+            document.getElementById("color").value;
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+</html>
